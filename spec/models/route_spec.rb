@@ -4,10 +4,9 @@ RSpec.describe Route, type: :model do
 
   describe  "Validations" do
 
-    it { expect(subject).to validate_presence_of(:origin) }
-    it { expect(subject).to validate_presence_of(:destination) }
-    it { expect(subject).to validate_presence_of(:distance) }
-    it { expect(subject).to validate_presence_of(:map) }
+    [:origin, :destination, :distance, :map].each do |attribute|
+      it { expect(subject).to validate_presence_of(attribute) }
+    end
 
   end
 
