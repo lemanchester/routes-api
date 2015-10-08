@@ -18,6 +18,11 @@ group :development, :test do
   gem 'byebug'
 end
 
+group :test do
+  # Ruby JSON Schema Validator
+  gem 'json-schema', '~> 2.5.1'
+end
+
 group :development do
   # Access an IRB console on exception pages or by using <%= console %> in views
   gem 'web-console', '~> 2.0'
