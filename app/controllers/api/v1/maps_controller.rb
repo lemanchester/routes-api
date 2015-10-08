@@ -1,6 +1,6 @@
-class Api::V1::MapsController < ApplicationController
+class Api::V1::MapsController < Api::V1::ApiController
 
-  before_action :load_map, only: [:show]
+  before_filter :load_map, only: [:show]
 
   def index
     render json: Map.all

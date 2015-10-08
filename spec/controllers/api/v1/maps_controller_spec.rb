@@ -23,17 +23,39 @@ RSpec.describe Api::V1::MapsController, type: :controller do
   describe "GET #show" do
     let!(:map) { create(:map, name: "treasure map") }
 
-    before { get :show, id: map.id, format: :json }
+    context "given a successful request" do
 
-    it 'responds with 200' do
-      expect(response.code).to eq '200'
+      before { get :show, id: map.id, format: :json }
+
+      it 'responds with 200' do
+        expect(response.code).to eq '200'
+      end
+
+      it "returns the right content type" do
+        expect(response.header['Content-Type']).to eq("application/json; charset=utf-8")
+      end
+
+      it { expect(response).to match_response_schema("map") }
+
     end
 
-    it "returns the right content type" do
-      expect(response.header['Content-Type']).to eq("application/json; charset=utf-8")
-    end
+    context "given a not found request" do
 
-    it { expect(response).to match_response_schema("map") }
+      before { get :show, id: 99, format: :json }
+
+      it 'responds with 404' do
+        expect(response.code).to eq '404'
+      end
+
+      it "returns the right content type" do
+        expect(response.header['Content-Type']).to eq("application/json; charset=utf-8")
+      end
+
+      it "returns the error message" do
+        expect(response.body).to include("Couldn't find")
+      end
+
+    end
 
   end
 
