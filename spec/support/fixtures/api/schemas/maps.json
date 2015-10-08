@@ -1,0 +1,17 @@
+{
+  "type": "object",
+  "required": ["maps"],
+  "properties": {
+    "maps" : {
+      "type" : "Array",
+      "required" : [
+        "id",
+        "name"
+      ],
+      "properties" : {
+        "id" : { "type" : "integer" },
+        "name" : { "type" : "string" }
+      }
+    }
+  }
+}

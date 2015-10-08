@@ -16,6 +16,7 @@ RSpec.describe Api::V1::MapsController, type: :controller do
       expect(response.header['Content-Type']).to eq("application/json; charset=utf-8")
     end
 
+    it { expect(response).to match_response_schema("maps") }
 
   end
 
