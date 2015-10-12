@@ -63,4 +63,25 @@ RSpec.describe Api::V1::MapsController, type: :controller do
 
   end
 
+  describe "DELETE #destroy" do
+    let!(:map) { create(:map, name: "treasure map") }
+
+    context "given a successful request" do
+
+      before { delete :destroy, id: map.id, format: :json }
+
+      it_behaves_like 'successful response'
+
+    end
+
+    context "given a not found request" do
+
+      before { delete :destroy, id: 99, format: :json }
+
+      it_behaves_like 'not found response'
+
+    end
+
+  end
+
 end

@@ -1,6 +1,6 @@
 class Api::V1::MapsController < Api::V1::ApiController
 
-  before_filter :load_map, only: [:show, :update]
+  before_filter :load_map, only: [:show, :update, :destroy]
 
   def index
     render json: Map.all
@@ -15,6 +15,10 @@ class Api::V1::MapsController < Api::V1::ApiController
     render json: @map
   end
 
+  def destroy
+    @map.destroy!
+    render json: @map
+  end
 
   private
 
