@@ -1,6 +1,6 @@
 class Api::V1::MapsController < Api::V1::ApiController
 
-  before_filter :load_map, only: [:show]
+  before_filter :load_map, only: [:show, :update]
 
   def index
     render json: Map.all
@@ -10,10 +10,20 @@ class Api::V1::MapsController < Api::V1::ApiController
     render json: @map
   end
 
+  def update
+    @map.update_attributes(map_params)
+    render json: @map
+  end
+
+
   private
 
   def load_map
     @map = Map.find params[:id]
+  end
+
+  def map_params
+    params.require(:map).permit(:name)
   end
 
 end

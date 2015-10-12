@@ -59,4 +59,46 @@ RSpec.describe Api::V1::MapsController, type: :controller do
 
   end
 
+  describe "Put #update" do
+    let!(:map) { create(:map, name: "treasure map") }
+
+    context "given a successful request" do
+
+      before { put :update, id: map.id, format: :json, map: {name: "new map"} }
+
+      it 'responds with 200' do
+        expect(response.code).to eq '200'
+      end
+
+      it "returns the right content type" do
+        expect(response.header['Content-Type']).to eq("application/json; charset=utf-8")
+      end
+
+      it { expect(response).to match_response_schema("map") }
+
+      it "returns the error message" do
+        expect(response.body).to include("new map")
+      end
+    end
+
+    context "given a bad request request" do
+
+      before { put :update, id: map.id, format: :json }
+
+      it "returns the right content type" do
+        expect(response.header['Content-Type']).to eq("application/json; charset=utf-8")
+      end
+
+      it 'responds with 400' do
+        expect(response.code).to eq '400'
+      end
+
+      it "returns the error message" do
+        expect(response.body).to include("param is missing")
+      end
+
+    end
+
+  end
+
 end
