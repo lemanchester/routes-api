@@ -31,17 +31,7 @@ RSpec.describe Api::V1::MapsController, type: :controller do
 
       before { get :show, id: 99, format: :json }
 
-      it 'responds with 404' do
-        expect(response.code).to eq '404'
-      end
-
-      it "returns the right content type" do
-        expect(response.header['Content-Type']).to eq("application/json; charset=utf-8")
-      end
-
-      it "returns the error message" do
-        expect(response.body).to include("Couldn't find")
-      end
+      it_behaves_like 'not found response'
 
     end
 
