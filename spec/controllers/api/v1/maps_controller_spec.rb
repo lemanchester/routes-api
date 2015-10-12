@@ -37,7 +37,7 @@ RSpec.describe Api::V1::MapsController, type: :controller do
 
   end
 
-  describe "Put #update" do
+  describe "PUT #update" do
     let!(:map) { create(:map, name: "treasure map") }
 
     context "given a successful request" do
@@ -57,17 +57,7 @@ RSpec.describe Api::V1::MapsController, type: :controller do
 
       before { put :update, id: map.id, format: :json }
 
-      it "returns the right content type" do
-        expect(response.header['Content-Type']).to eq("application/json; charset=utf-8")
-      end
-
-      it 'responds with 400' do
-        expect(response.code).to eq '400'
-      end
-
-      it "returns the error message" do
-        expect(response.body).to include("param is missing")
-      end
+      it_behaves_like 'bad response'
 
     end
 

@@ -25,3 +25,18 @@ shared_examples_for 'not found response' do
     expect(response.body).to include("Couldn't find")
   end
 end
+
+
+shared_examples_for 'bad response' do
+  it "returns the right content type" do
+    expect(response.header['Content-Type']).to eq("application/json; charset=utf-8")
+  end
+
+  it 'responds with 400' do
+    expect(response.code).to eq '400'
+  end
+
+  it "returns the error message" do
+    expect(response.body).to include("param is missing")
+  end
+end
