@@ -20,6 +20,12 @@ class Api::V1::MapsController < Api::V1::ApiController
     render json: @map
   end
 
+  def create
+    map = Map.new(map_params)
+    map.save!
+    render json: map
+  end
+
   private
 
   def load_map

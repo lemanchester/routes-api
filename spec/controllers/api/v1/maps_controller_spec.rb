@@ -84,4 +84,25 @@ RSpec.describe Api::V1::MapsController, type: :controller do
 
   end
 
+  describe "#create" do
+    let(:map) { attributes_for(:map, name: "treasure map") }
+
+    context "given a successful request" do
+
+      before { post :create, map: map, format: :json  }
+
+      it_behaves_like 'successful response'
+
+    end
+
+    context "given a bad request request" do
+
+      before { post :create, format: :json }
+
+      it_behaves_like 'bad response'
+
+    end
+
+  end
+
 end
