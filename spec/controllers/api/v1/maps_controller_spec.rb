@@ -8,13 +8,7 @@ RSpec.describe Api::V1::MapsController, type: :controller do
 
     before { get :index, format: :json }
 
-    it 'responds with 200' do
-      expect(response.code).to eq '200'
-    end
-
-    it "returns the right content type" do
-      expect(response.header['Content-Type']).to eq("application/json; charset=utf-8")
-    end
+    it_behaves_like 'successful response'
 
     it { expect(response).to match_response_schema("maps") }
 
@@ -27,13 +21,7 @@ RSpec.describe Api::V1::MapsController, type: :controller do
 
       before { get :show, id: map.id, format: :json }
 
-      it 'responds with 200' do
-        expect(response.code).to eq '200'
-      end
-
-      it "returns the right content type" do
-        expect(response.header['Content-Type']).to eq("application/json; charset=utf-8")
-      end
+      it_behaves_like 'successful response'
 
       it { expect(response).to match_response_schema("map") }
 
@@ -66,13 +54,7 @@ RSpec.describe Api::V1::MapsController, type: :controller do
 
       before { put :update, id: map.id, format: :json, map: {name: "new map"} }
 
-      it 'responds with 200' do
-        expect(response.code).to eq '200'
-      end
-
-      it "returns the right content type" do
-        expect(response.header['Content-Type']).to eq("application/json; charset=utf-8")
-      end
+      it_behaves_like 'successful response'
 
       it { expect(response).to match_response_schema("map") }
 
