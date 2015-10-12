@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe Api::V1::MapsController, type: :controller do
 
-  describe "GET #index" do
+  describe "#index" do
     let!(:map) { create(:map, name: "treasure map") }
 
 
@@ -14,7 +14,7 @@ RSpec.describe Api::V1::MapsController, type: :controller do
 
   end
 
-  describe "GET #show" do
+  describe "#show" do
     let!(:map) { create(:map, name: "treasure map") }
 
     context "given a successful request" do
@@ -37,7 +37,7 @@ RSpec.describe Api::V1::MapsController, type: :controller do
 
   end
 
-  describe "PUT #update" do
+  describe "#update" do
     let!(:map) { create(:map, name: "treasure map") }
 
     context "given a successful request" do
@@ -63,7 +63,7 @@ RSpec.describe Api::V1::MapsController, type: :controller do
 
   end
 
-  describe "DELETE #destroy" do
+  describe "#destroy" do
     let!(:map) { create(:map, name: "treasure map") }
 
     context "given a successful request" do

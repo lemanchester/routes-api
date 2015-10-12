@@ -1,6 +1,6 @@
 class Api::V1::MapsController < Api::V1::ApiController
 
-  before_filter :load_map, only: [:show, :update, :destroy]
+  before_action :load_map, only: [:show, :update, :destroy]
 
   def index
     render json: Map.all
