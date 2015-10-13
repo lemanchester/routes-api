@@ -54,6 +54,7 @@ RSpec.describe Api::V1::MapsController, type: :controller do
     end
 
     context "given a bad request request" do
+      let(:error_msg) { "param is missing" }
 
       before { put :update, id: map.id, format: :json }
 
@@ -96,6 +97,7 @@ RSpec.describe Api::V1::MapsController, type: :controller do
     end
 
     context "given a bad request request" do
+      let(:error_msg) { "param is missing" }
 
       before { post :create, format: :json }
 

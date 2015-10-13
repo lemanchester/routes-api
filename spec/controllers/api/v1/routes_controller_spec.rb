@@ -55,6 +55,7 @@ RSpec.describe Api::V1::RoutesController, type: :controller do
     end
 
     context "given a bad request request" do
+      let(:error_msg) { "param is missing" }
 
       before { put :update, id: route.id, format: :json }
 
@@ -81,6 +82,53 @@ RSpec.describe Api::V1::RoutesController, type: :controller do
       it_behaves_like 'not found response'
 
     end
+  end
+
+  describe "#create" do
+    let(:map) { create(:map) }
+
+    let(:routes) do
+      [
+        { origin: "A", destination: "B", distance: 10 },
+        { origin: "B", destination: "C", distance: 20 },
+        { origin: "D", destination: "E", distance: 16 },
+        { origin: "E", destination: "F", distance: 30 }
+      ]
+    end
+
+    context "given a successful request" do
+
+      before { post :create, map_id: map.id, format: :json, routes: routes  }
+
+      it_behaves_like 'successful response'
+
+    end
+
+    context "given a bad request request" do
+      let(:error_msg) { "Validation failed" }
+
+      let(:routes) do
+        [
+          { origin: nil, destination: nil, distance: 30 }
+        ]
+      end
+
+      before { post :create, map_id: map.id, format: :json, routes: routes  }
+
+      it_behaves_like 'bad response'
+
+    end
+
+
+    context "given a bad request request" do
+      let(:error_msg) { "param is missing" }
+
+      before { post :create, map_id: map.id, format: :json }
+
+      it_behaves_like 'bad response'
+
+    end
+
   end
 
 end

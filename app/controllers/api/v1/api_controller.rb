@@ -2,6 +2,7 @@ class Api::V1::ApiController < ApplicationController
 
   rescue_from ActiveRecord::RecordNotFound, with: :render_404_error
   rescue_from ActionController::ParameterMissing, with: :render_400_error
+  rescue_from ActiveRecord::RecordInvalid, with: :render_400_error
 
 
   private

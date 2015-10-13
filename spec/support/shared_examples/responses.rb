@@ -37,6 +37,6 @@ shared_examples_for 'bad response' do
   end
 
   it "returns the error message" do
-    expect(response.body).to include("param is missing")
+    expect(response.body).to include(error_msg)
   end
 end
