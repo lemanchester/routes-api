@@ -40,3 +40,17 @@ shared_examples_for 'bad response' do
     expect(response.body).to include(error_msg)
   end
 end
+
+shared_examples_for 'unprocessed' do
+  it "returns the right content type" do
+    expect(response.header['Content-Type']).to eq("application/json; charset=utf-8")
+  end
+
+  it 'responds with 422' do
+    expect(response.code).to eq '422'
+  end
+
+  it "returns the error message" do
+    expect(response.body).to include(error_msg)
+  end
+end

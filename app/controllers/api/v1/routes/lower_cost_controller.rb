@@ -3,6 +3,7 @@ class Api::V1::Routes::LowerCostController < Api::V1::ApiController
   before_action :load_map, only: [:index]
 
   def index
+    MapRoutesPresenceValidator.new(@map).validate!
     render json: @map
   end
 
