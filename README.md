@@ -129,3 +129,17 @@ Response:
 }
 ```
 
+#### List Routes per Map
+
+```bash
+curl -X GET 'http://localhost:3000/api/v1/maps/2/routes/lower_cost/?route\[origin\]=A&route\[destination\]=D&route\[autonomy\]=10&route\[liter_value\]=2.50'
+```
+Response:
+```
+{
+    "lower_cost": {
+        "route": "A,B,D",
+        "cost": 6.25
+    }
+}
+```
