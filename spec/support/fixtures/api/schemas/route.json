@@ -1,0 +1,21 @@
+{
+  "type": "object",
+  "required": ["route"],
+  "properties": {
+    "route" : {
+      "type" : "object",
+      "required" : [
+        "id",
+        "origin",
+        "destination",
+        "distance"
+      ],
+      "properties" : {
+        "id" : { "type" : "integer" },
+        "origin" : { "type" : "string" },
+        "destination" : { "type" : "string" },
+        "distance" : { "type" : "float" }
+      }
+    }
+  }
+}
