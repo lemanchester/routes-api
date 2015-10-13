@@ -1,17 +1,18 @@
 class Graph
   Vertex = Struct.new(:name, :neighbours, :distance, :previous)
 
-  def initialize(graph)
+  # @param [Array<Route>] list of routes
+  def initialize(routes)
     @vertices = Hash.new do |key, value|
       key[value] = Vertex.new(value, [], Float::INFINITY)
     end
 
     @edges = {}
 
-    graph.each do |(vertice_one, vertice_two, distance)|
-      @vertices[vertice_one].neighbours << vertice_two
-      @vertices[vertice_two].neighbours << vertice_one
-      @edges[[vertice_one, vertice_two]] = @edges[[vertice_two, vertice_one]] = distance
+    routes.each do |r|
+      @vertices[r.origin].neighbours << r.destination
+      @vertices[r.destination].neighbours << r.origin
+      @edges[[r.origin, r.destination]] = @edges[[r.destination, r.origin]] = r.distance
     end
 
     @dijkstra_source = nil
