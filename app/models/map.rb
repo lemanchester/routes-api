@@ -6,4 +6,9 @@ class Map < ActiveRecord::Base
   # Validations
   validates :name, presence: true, uniqueness: true
 
+
+  def route_points
+    routes.map(&:origin) + routes.map(&:destination)
+  end
+
 end
