@@ -1,7 +1,7 @@
 class Api::V1::RoutesController < Api::V1::ApiController
 
   before_action :load_map, only: [:index]
-  before_action :load_route, only: [:show, :update]
+  before_action :load_route, only: [:show, :update, :destroy]
 
   def index
     render json: @map.routes
@@ -13,6 +13,11 @@ class Api::V1::RoutesController < Api::V1::ApiController
 
   def update
     @route.update_attributes(route_params)
+    render json: @route
+  end
+
+  def destroy
+    @route.destroy!
     render json: @route
   end
 

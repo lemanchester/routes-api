@@ -63,4 +63,24 @@ RSpec.describe Api::V1::RoutesController, type: :controller do
     end
   end
 
+  describe "#destroy" do
+    let!(:route) { create(:route) }
+
+    context "given a successful request" do
+
+      before { delete :destroy, id: route.id, format: :json }
+
+      it_behaves_like 'successful response'
+
+    end
+
+    context "given a not found request" do
+
+      before { delete :destroy, id: 99, format: :json }
+
+      it_behaves_like 'not found response'
+
+    end
+  end
+
 end
