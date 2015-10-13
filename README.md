@@ -36,3 +36,96 @@ The response it should tell you:
 - Create a simple Ruby Webserivce to create map and routes and search for the cheasp path;
 - Make sure that is everything tested;
 - Use rails to create simple Rest API;
+
+### Interacting with the API
+
+#### Create Map
+
+```bash
+curl -H "Content-Type: application/json" -X POST "http://localhost:3000/api/v1/maps/" -d'
+{
+    "map": {
+        "name": "xxx"
+    }
+}'
+```
+
+#### List Maps
+
+```bash
+curl http://localhost:3000/api/v1/maps/
+```
+
+Response:
+```
+{
+    "maps": [
+        {
+            "id": 2,
+            "name": "Dark Moon"
+        },
+        {
+            "id": 3,
+            "name": "foo"
+        },
+        {
+            "id": 4,
+            "name": "xyy"
+        }
+    ]
+}
+```
+
+
+#### Create Routes
+
+```bash
+curl -H "Content-Type: application/json" -X POST  http://localhost:3000/api/v1/maps/3/routes -d'
+{
+  "routes": [
+      { "origin": "A", "destination": "B", "distance": 10 },
+      { "origin": "B", "destination": "C", "distance": 20 },
+      { "origin": "D", "destination": "E", "distance": 16 },
+      { "origin": "E", "destination": "F", "distance": 30 }
+  ]
+}'
+```
+
+#### List Routes per Map
+
+```bash
+curl http://localhost:3000/api/v1/maps/3/routes
+```
+
+Response:
+```
+{
+    "routes": [
+        {
+            "id": 11,
+            "origin": "A",
+            "destination": "B",
+            "distance": 10
+        },
+        {
+            "id": 12,
+            "origin": "B",
+            "destination": "C",
+            "distance": 20
+        },
+        {
+            "id": 13,
+            "origin": "D",
+            "destination": "E",
+            "distance": 16
+        },
+        {
+            "id": 14,
+            "origin": "E",
+            "destination": "F",
+            "distance": 30
+        }
+    ]
+}
+```
+
