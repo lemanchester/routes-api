@@ -4,6 +4,7 @@ class Api::V1::Routes::LowerCostController < Api::V1::ApiController
 
   def index
     MapRoutesPresenceValidator.new(@map).validate!
+    MapRoutePointsValidator.new(@map).validate!(params[:origin], params[:destination])
     render json: @map
   end
 
