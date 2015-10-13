@@ -1,0 +1,17 @@
+{
+  "type": "object",
+  "required": ["lower_cost"],
+  "properties": {
+    "lower_cost" : {
+      "type" : "object",
+      "required" : [
+        "route",
+        "cost"
+      ],
+      "properties" : {
+        "route" : { "type" : "string" },
+        "cost" : { "type" : "floag" }
+      }
+    }
+  }
+}

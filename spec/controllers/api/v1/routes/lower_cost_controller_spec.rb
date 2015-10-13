@@ -16,6 +16,9 @@ RSpec.describe Api::V1::Routes::LowerCostController, type: :controller do
       end
 
       it_behaves_like 'successful response'
+
+      it { expect(response).to match_response_schema("lower_cost") }
+
     end
 
     context "given the map does not contain routes" do
