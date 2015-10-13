@@ -3,8 +3,7 @@ class Api::V1::Routes::LowerCostController < Api::V1::ApiController
   before_action :load_map, only: [:index]
 
   def index
-    LowerCostCalculator.new(@map).calculate(route_params)
-    render json: @map
+    render json: LowerCostCalculator.new(@map).calculate(route_params)
   end
 
   private
