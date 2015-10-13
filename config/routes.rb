@@ -1,9 +1,9 @@
 Rails.application.routes.draw do
 
-  namespace :api do
+  namespace :api, except: [:new] do
     namespace :v1 do
       resources :maps do
-        resources :routes
+        resources :routes, shallow: true
       end
     end
   end
