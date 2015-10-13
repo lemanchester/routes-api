@@ -4,6 +4,9 @@ Rails.application.routes.draw do
     namespace :v1 do
       resources :maps do
         resources :routes, shallow: true
+        namespace :routes do
+          resources :lower_cost, only: [:index]
+        end
       end
     end
   end
